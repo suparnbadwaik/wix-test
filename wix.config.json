@@ -1,0 +1,5 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/wix-config.json",
+  "appId": "488433a3-ec42-430d-ad79-94b4df8fc604",
+  "projectId": "ssb-catalog-app"
+}

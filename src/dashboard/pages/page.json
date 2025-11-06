@@ -1,0 +1,5 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/dashboard-page.json",
+  "id": "6e8710e0-8d24-414c-b19d-047dafc669d8",
+  "title": "ssb-catalog-app"
+}
