@@ -1,0 +1,27 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/custom-element.json",
+  "id": "cf4c5378-a9fc-40bb-b227-9f3c2b477774",
+  "name": "catalog-widget",
+  "width": {
+    "defaultWidth": 600,
+    "allowStretch": true
+  },
+  "height": {
+    "defaultHeight": 900
+  },
+  "installation": {
+    "autoAddToSite": true
+  },
+  "behaviors": {
+    "dashboard": {
+      "dashboardPageComponentId": "6e8710e0-8d24-414c-b19d-047dafc669d8"
+    }
+  },
+  "presets": [
+    {
+      "id": "c36183ec-0f01-474a-af7c-9e2643e48cf8",
+      "thumbnailUrl": "../../../../assets/catalog-widget/thumbnail.png"
+    }
+  ]
+}
+
