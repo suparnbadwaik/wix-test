@@ -167,14 +167,14 @@
 }
 
 .catalog-widget-btn-primary {
-  background-color: #3b82f6;
+  background-color: #333333;
   color: #ffffff;
-  border-color: #3b82f6;
+  border-color: #333333;
 }
 
 .catalog-widget-btn-primary:hover {
-  background-color: #2563eb;
-  border-color: #2563eb;
+  background-color: #565454;
+  border-color: #565454;
 }
 
 .catalog-widget-btn-secondary {
