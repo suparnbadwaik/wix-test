@@ -1,9 +1,4 @@
 /* Classic Theme - White Background */
 .catalog-widget-root {
-  background: #0d89a1;
-}
-
-.catalog-widget-submit {
-    background-color: #067b93 !important;
-    color: Red
+  background: #ffffff !important;
 }

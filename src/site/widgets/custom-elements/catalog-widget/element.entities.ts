@@ -6,4 +6,5 @@ export interface GiftCardFormValues {
   recipientEmail: string;
   senderName: string;
   senderEmail: string;
+  message: string;
 }

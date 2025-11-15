@@ -1,8 +1,4 @@
-/* Minimalist Theme - Light Gray Background */
+/* Minimalist Theme - White Background */
 .catalog-widget-root {
-  background: #033a5f;
-}
-
-.catalog-widget-submit {
-    background-color: #0c7ac4;
+  background: #ffffff !important;
 }

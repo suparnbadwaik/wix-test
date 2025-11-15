@@ -1,17 +1,6 @@
 import React, { type FC, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import reactToWebComponent from 'react-to-webcomponent';
-import {
-  WixDesignSystemProvider,
-  Heading,
-  Text,
-  Input,
-  Dropdown,
-  Button,
-  Box,
-  FormField,
-} from '@wix/design-system';
-import '@wix/design-system/styles.global.css';
 
 import './element.css';
 
@@ -61,129 +50,133 @@ const CustomElement: FC<Props> = ({
   } = useGiftCardController();
 
   return (
-    <div>
-      <WixDesignSystemProvider features={{ newColorsBranding: true }}>
-        <div className="catalog-widget-root">
-        <header className="catalog-widget-header">
-          <Heading appearance="H2">{displayName}</Heading>
-          <Text secondary size="small">
-            Personalize your gift card before adding it to cart.
-          </Text>
-        </header>
+    <div className="catalog-widget-root">
+      <header className="catalog-widget-header">
+        <h2 className="catalog-widget-title">{displayName}</h2>
+        <h3 className="catalog-widget-price">${formValues.amount}</h3>
+        <p className="catalog-widget-description">
+          Send a gift card to your loved ones with a personalized message.
+        </p>
+      </header>
 
-        <div className="catalog-widget-preview">
-          <img src={formValues.selectedImage} alt="Selected gift card" />
-        </div>
+      <div className="catalog-widget-content">
+        <div className="catalog-widget-left">
+          <div className="catalog-widget-preview">
+            <img src={formValues.selectedImage} alt="Selected gift card" />
+          </div>
 
-        <div className="catalog-widget-thumbnails">
-          {imageOptions.map((imageUrl) => {
-            const isActive = imageUrl === formValues.selectedImage;
-            return (
-              <button
-                key={imageUrl}
-                type="button"
-                className={`catalog-widget-thumbnail-button${
-                  isActive ? ' catalog-widget-thumbnail-active' : ''
-                }`}
-                onClick={() => handleImageSelect(imageUrl)}
-              >
-                <img src={imageUrl} alt="Gift card option" />
-              </button>
-            );
-          })}
+          <div className="catalog-widget-thumbnails">
+            {imageOptions.map((imageUrl) => {
+              const isActive = imageUrl === formValues.selectedImage;
+              return (
+                <button
+                  key={imageUrl}
+                  type="button"
+                  className={`catalog-widget-thumbnail-button${
+                    isActive ? ' catalog-widget-thumbnail-active' : ''
+                  }`}
+                  onClick={() => handleImageSelect(imageUrl)}
+                >
+                  <img src={imageUrl} alt="Gift card option" />
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <section className="catalog-widget-fields">
-          <FormField label="Amount & Quantity">
-            <div className="catalog-widget-amount-row">
-              <Input
-                value={formValues.amount.toString()}
-                onChange={(event) => handleCustomAmountChange(event.target.value)}
-                prefix={<Text size="tiny">$</Text>}
-                size="medium"
-                aria-label="Custom amount"
-                className="catalog-widget-amount-input"
-              />
-              <div className="catalog-widget-amount-buttons">
-                {quickAmountOptions.map((amountOption) => (
-                  <Button
-                    key={amountOption}
-                    size="small"
-                    priority={formValues.amount === amountOption ? 'primary' : 'secondary'}
-                    onClick={() => handleAmountChange(amountOption)}
-                  >
-                    ${amountOption}
-                  </Button>
-                ))}
-              </div>
-              <Dropdown
-                size="small"
-                selectedId={formValues.quantity.toString()}
-                options={quantityOptions}
-                onSelect={(option) => {
-                  if (option?.id) {
-                    handleQuantityChange(Number(option.id));
-                  }
-                }}
-                placeholder="Qty"
-                className="catalog-widget-quantity-dropdown"
-              />
-            </div>
-          </FormField>
-
-          <div>
-            <Heading appearance="H4">Recipient Details</Heading>
-            <div className="catalog-widget-two-column">
-              <FormField label="Recipient Name">
-                <Input
-                  value={formValues.recipientName}
-                  onChange={(event) => handleFieldChange('recipientName', event.target.value)}
-                  placeholder="Recipient's full name"
-                />
-              </FormField>
-              <FormField label="Recipient Email">
-                <Input
-                  type="email"
-                  value={formValues.recipientEmail}
-                  onChange={(event) => handleFieldChange('recipientEmail', event.target.value)}
-                  placeholder="name@example.com"
-                />
-              </FormField>
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Amount</label>
+            <div className="catalog-widget-amount-buttons">
+              {quickAmountOptions.map((amountOption) => (
+                <button
+                  key={amountOption}
+                  type="button"
+                  className={`catalog-widget-btn ${formValues.amount === amountOption ? 'catalog-widget-btn-primary' : 'catalog-widget-btn-secondary'}`}
+                  onClick={() => handleAmountChange(amountOption)}
+                >
+                  ${amountOption}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div>
-            <Heading appearance="H4">Sender Details</Heading>
-            <div className="catalog-widget-two-column">
-              <FormField label="Sender Name">
-                <Input
-                  value={formValues.senderName}
-                  onChange={(event) => handleFieldChange('senderName', event.target.value)}
-                  placeholder="Your full name"
-                />
-              </FormField>
-              <FormField label="Sender Email">
-                <Input
-                  type="email"
-                  value={formValues.senderEmail}
-                  onChange={(event) => handleFieldChange('senderEmail', event.target.value)}
-                  placeholder="you@example.com"
-                />
-              </FormField>
-            </div>
-            <Text className="catalog-widget-helper">
-              We&apos;ll email the digital gift card to the recipient and send you a copy.
-            </Text>
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Quantity</label>
+            <select
+              className="catalog-widget-select"
+              value={formValues.quantity}
+              onChange={(e) => handleQuantityChange(Number(e.target.value))}
+            >
+              {quantityOptions.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.value}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <Box className="catalog-widget-submit">
-            <Button size="medium" priority="primary" fullWidth onClick={handleSubmit}>
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Recipient email *</label>
+            <input
+              type="email"
+              className="catalog-widget-input"
+              value={formValues.recipientEmail}
+              onChange={(e) => handleFieldChange('recipientEmail', e.target.value)}
+            />
+          </div>
+
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Recipient name</label>
+            <input
+              type="text"
+              className="catalog-widget-input"
+              value={formValues.recipientName}
+              onChange={(e) => handleFieldChange('recipientName', e.target.value)}
+            />
+          </div>
+          
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Sender email *</label>
+            <input
+              type="email"
+              className="catalog-widget-input"
+              value={formValues.senderEmail}
+              onChange={(e) => handleFieldChange('senderEmail', e.target.value)}
+            />
+          </div>
+
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Sender name</label>
+            <input
+              type="text"
+              className="catalog-widget-input"
+              value={formValues.senderName}
+              onChange={(e) => handleFieldChange('senderName', e.target.value)}
+            />
+          </div>
+
+          <div className="catalog-widget-field">
+            <label className="catalog-widget-label">Message</label>
+            <textarea
+              className="catalog-widget-textarea"
+              value={formValues.senderName}
+              onChange={(e) => handleFieldChange('senderName', e.target.value)}
+              rows={4}
+            />
+          </div>
+
+          <div className="catalog-widget-submit">
+            <button 
+              type="button"
+              className="catalog-widget-btn catalog-widget-btn-primary catalog-widget-btn-full"
+              onClick={handleSubmit}
+            >
               Add to Cart
-            </Button>
-          </Box>
+            </button>
+          </div>
         </section>
-        </div>
-      </WixDesignSystemProvider>
+      </div>
     </div>
   );
 };
