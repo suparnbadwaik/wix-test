@@ -1,9 +1,9 @@
 import type { GiftCardFormValues } from './element.entities';
 
 export const IMAGE_OPTIONS: string[] = [
-  'https://www.gstatic.com/webp/gallery3/1.sm.png',
-  'https://pixabay.com/images/download/people-2944065_640.jpg',
-  'https://www.gstatic.com/webp/gallery3/1.sm.png',
+  'https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=1200&q=80',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
   'https://pixabay.com/images/download/people-2944065_640.jpg',
   'https://www.gstatic.com/webp/gallery3/1.sm.png'
 ];

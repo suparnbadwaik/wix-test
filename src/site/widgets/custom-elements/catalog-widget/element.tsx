@@ -103,17 +103,29 @@ const CustomElement: FC<Props> = ({
 
           <div className="catalog-widget-field">
             <label className="catalog-widget-label">Quantity</label>
-            <select
-              className="catalog-widget-select"
-              value={formValues.quantity}
-              onChange={(e) => handleQuantityChange(Number(e.target.value))}
-            >
-              {quantityOptions.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.value}
-                </option>
-              ))}
-            </select>
+            <div className="catalog-widget-quantity-input">
+              <button
+                type="button"
+                className="catalog-widget-quantity-btn"
+                onClick={() => handleQuantityChange(Math.max(1, formValues.quantity - 1))}
+              >
+                −
+              </button>
+              <input
+                type="number"
+                className="catalog-widget-quantity-value"
+                value={formValues.quantity}
+                onChange={(e) => handleQuantityChange(Math.max(1, Number(e.target.value) || 1))}
+                min="1"
+              />
+              <button
+                type="button"
+                className="catalog-widget-quantity-btn"
+                onClick={() => handleQuantityChange(formValues.quantity + 1)}
+              >
+                +
+              </button>
+            </div>
           </div>
 
           <div className="catalog-widget-field">
@@ -127,7 +139,7 @@ const CustomElement: FC<Props> = ({
           </div>
 
           <div className="catalog-widget-field">
-            <label className="catalog-widget-label">Recipient name</label>
+            <label className="catalog-widget-label">Recipient name *</label>
             <input
               type="text"
               className="catalog-widget-input"
@@ -147,7 +159,7 @@ const CustomElement: FC<Props> = ({
           </div>
 
           <div className="catalog-widget-field">
-            <label className="catalog-widget-label">Sender name</label>
+            <label className="catalog-widget-label">Sender name *</label>
             <input
               type="text"
               className="catalog-widget-input"

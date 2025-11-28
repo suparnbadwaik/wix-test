@@ -10,7 +10,7 @@
     "defaultHeight": 900
   },
   "installation": {
-    "autoAddToSite": true
+    "autoAddToSite": false
   },
   "behaviors": {
     "dashboard": {
